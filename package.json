@@ -1,0 +1,15 @@
+{
+  "name": "sdes",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "main.js",
+  "directories": {
+    "test": ""
+  },
+  "scripts": {
+    "test": "test"
+  }
+}
