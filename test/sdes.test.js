@@ -18,6 +18,12 @@ const TEST_VECTORS = [
         cipherText: "00010110",
         keys: { k1: "01011111", k2: "11111100" }
     },
+
+    {
+        plainText:  "01110010",
+        cipherText: "01110111",
+        keys: { k1: "10100100", k2: "01000011" }
+    },
 ];
 
 /**
