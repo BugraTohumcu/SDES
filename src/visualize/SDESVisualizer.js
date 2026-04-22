@@ -24,12 +24,6 @@ export class SDESVisualizer {
         state = this.fkProcess(state, keys.k1, "Round 1", logs);
 
         let round1Result = state.substring(0, 4);
-        logs.push({ 
-            title: "Round 1: L0 ⊕ F → New Left", 
-            prev: L,
-            val: round1Result, 
-            desc: "XOR L0 with F(R0,K1) to get the new left half. R0 remains unchanged as the new right half." 
-        });
 
         let beforeSwap = state;
         state = state.substring(4) + state.substring(0, 4);
@@ -43,10 +37,10 @@ export class SDESVisualizer {
         state = this.fkProcess(state, keys.k2, "Round 2", logs);
         
         logs.push({ 
-            title: "Round 2: R0 ⊕ F → Final Halves", 
+            title: "Combine Final Halves", 
             prev: state.substring(4),
             val: state, 
-            desc: "XOR the left half (R0 from SW) with F(R1,K2) to get the final left. The right half remains as R1." 
+            desc: "Concatenate the final left and right 4-bit halves to form the 8-bit block before the final permutation." 
         });
 
         let final = permute(state, Tables.INVERSE_IP_TABLE);
