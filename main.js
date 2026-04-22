@@ -1,5 +1,5 @@
-import { KeyGeneratorVisualizer } from "./src/visualize/KeyGeneratorVisualizer.js"
-import {  SDESVisualizer } from "./src/visualize/SDESVisualizer.js";
+import { KeyGeneratorVisualizer } from "./src/visualize/KeyGeneratorVisualizer.js"; 
+import { SDESVisualizer } from "./src/visualize/SDESVisualizer.js";
 
 let allSteps = [];
 let currentIdx = 0;
@@ -24,7 +24,7 @@ const getBitsFromContainer = (containerId) => {
     return Array.from(inputs).map(i => i.value).join("");
 };
 
-startBtn.addEventListener("click", () => {    
+startBtn.addEventListener("click", () => {
     const pt = getBitsFromContainer("plaintext-input");
     const key = getBitsFromContainer("key-input");
 
