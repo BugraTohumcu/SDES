@@ -48,20 +48,19 @@ body {
     margin-top: -20px; 
     gap: 25px;
 }
-/* 1. İki giriş grubu (Plaintext ve Key) arasını açar */
+
 .inputs-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Bu değeri artırdıkça iki grup birbirinden uzaklaşır */
+    gap: 20px;
 }
 
-/* 2. Senin CSS'inde hiç olmayan ama HTML'inde kullandığın o sınıf: */
 .input-label {
     width: 100%;
-    text-align: center;   /* Yazıları ortalar */
-    padding-right: 15px; /* Kutuların hizasına göre ince ayar */
-    font-size: 18px;
-    margin-bottom: 8px; /* Yazı ile altındaki kutucukların arasını açar */
+    text-align: center;
+    padding-right: 15px;
+    font-size: 22px;
+    margin-bottom: 8px;
     text-transform: uppercase;
 }
 
@@ -84,14 +83,15 @@ body {
 }
 
 .bit-row input {
-    width: 40px;
-    height: 50px;
+    width: 45px;
+    height: 55px;
     border: 3px solid #000;
     font-family: inherit;
-    font-size: 30px;
+    font-size: 34px;
     text-align: center;
     outline: none;
     padding-right: 5px;
+    background: #fff;
 }
 
 .retro-btn {
@@ -118,6 +118,7 @@ body {
     flex-direction: column;
     height: 100vh;
     padding: 10px 40px;
+    overflow: hidden; /* Taşmayı engelle */
 }
 
 .compact-stepper {
@@ -126,10 +127,11 @@ body {
     width: 100%;
     padding: 15px 0;
     border-bottom: 2px solid #000;
+    flex-shrink: 0; /* Boyut sabit kalsın */
 }
 
 .step-item {
-    font-size: 20px;
+    font-size: 18px;
     color: #aaa;
 }
 
@@ -149,23 +151,24 @@ body {
     background: #000;
 }
 
-/* YENİ LEYOUT: YAN YANA DİZİLİM */
 .process-main {
     flex: 1;
     display: flex;
     flex-direction: row; 
     align-items: center; 
     justify-content: center;
-    gap: 150px; /* Görsel ve kutu arası boşluk */
+    gap: 80px;
+    min-height: 0; /* Flex taşmasını önle */
+    overflow: hidden;
 }
 
-/* GÖRSEL ÇERÇEVESİ */
 .flow-chart-container {
     border: 3px solid #000; 
-    padding: 13px;
+    padding: 10px;
     background: #fff;
     box-shadow: 3px 3px 0px #000;
-    height: 65vh;
+    height: 60vh;
+    flex-shrink: 0;
 }
 
 .flow-img {
@@ -174,41 +177,47 @@ body {
     object-fit: contain;
 }
 
-/* DETAY KUTUSU */
 .floating-detail-box {
     background: #000;
-    width: 60%;
-    min-width: 400px;
+    width: 55%;
+    min-width: 450px;
+    max-width: 650px;
     box-shadow: 7px 7px 0px #000;
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh; /* Yükseklik sınırı */
 }
 
 .detail-header {
     color: #fff;
-    padding: 15px 20px;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     font-size: 20px;
+    flex-shrink: 0;
 }
 
 .detail-content {
     background: #fff;
-    padding: 30px;
+    padding: 20px 25px;
     border: 3px solid #000;
     margin: 0 4px 4px 4px; 
-    min-height: 320px;
+    min-height: 350px;
+    max-height: 60vh;
+    overflow-y: auto; /* İçerik taşarsa scroll */
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     text-align: center;
 }
 
 .step-value-display {
     border: 4px solid #000;
-    padding: 10px 40px;
-    font-size: 30px;
+    padding: 12px 40px;
+    font-size: 34px;
     background: #f0f0f0;
-    margin-top: 20px;
+    margin-top: 15px;
     box-shadow: 4px 4px 0px #000;
 }
 
@@ -216,197 +225,173 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 0;
+    padding: 15px 0;
+    flex-shrink: 0;
+    margin-top: auto;
 }
 
 .counter-box {
     border: 2px solid #000;
     background: #eee;
-    padding: 6px 10px;
-    margin-top: 35px;
-    font-size: 14px;
+    padding: 8px 15px;
+    font-size: 16px;
 }
+
 .key-gen-step {
     display: flex;
-    align-items: center; /* Dikeyde ortalar */
-    gap: 10px; /* Metin ile GIF arasındaki boşluk */
+    align-items: center;
+    gap: 8px;
 }
 
-/* GIF'in Boyutunu ve Ayarlarını Yapma */
 .step-gif {
-    height: 25px; /* Stepper yüksekliğine uygun bir boyut */
+    height: 22px;
     width: auto;
     object-fit: contain;
-    /* Eğer GIF siyah arka planlıysa ve beyaz yapmak isterseniz: */
-    /* filter: invert(1); */ 
 }
 
-/* Aktif olduğunda alt çizginin düzgün görünmesi için: */
 .step-item.active.key-gen-step::after {
-    width: calc(100% - 35px); /* GIF genişliği + gap kadar kısaltıyoruz */
-    left: 0; /* Çizgi metnin altından başlasın */
+    width: calc(100% - 30px);
+    left: 0;
 }
 
-/* RESULT Adımı İçin Hizalama (GIF Solda) */
 .result-step {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
-/* RESULT aktif olduğunda alt çizgi ayarı */
-/* Çizginin GIF'in altından başlamayıp metni ortalaması için: */
 .step-item.active.result-step::after {
     width: 100%;
     left: 0;
 }
 
-/* INPUT Adımı İçin Hizalama (GIF Sağda) */
 .input-step {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
-/* INPUT aktif olduğunda alt çizgi ayarı */
 .step-item.active.input-step::after {
-    width: calc(100% - 35px); 
+    width: calc(100% - 30px); 
     left: 0;
 }
 
-/* --- ADIM DETAY GÖRSELLERİ (SADECE GÖRSEL) --- */
+/* --- ADIM DETAY GÖRSELLERİ --- */
 .step-visual-tool {
-    margin: -10px 0 5px 0;
+    margin: 10px 0 5px 0;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    /* Arka plan ve border'ı kaldırdık */
 }
 
 .table-img {
-    max-width: 400px; /* Boyutu ihtiyacına göre artırabilirsin */
+    max-width: 450px;
+    width: 100%;
     height: auto;
     display: block;
-    /* Çerçeve, padding ve gölgeyi sildik */
     border: none;
     background: transparent;
     box-shadow: none;
-}
-.step-description {
-    /* Mevcut boyutu artırmak için bu değeri yükselt (örn: 22px veya 24px) */
-    font-size: 18px; 
-    
-    /* Metnin daha okunaklı olması için satır aralığı */
-    line-height: 1.5;
-    
-    /* Yazıyı biraz daha belirgin yapmak istersen: */
-    font-weight: 500;
-    
-    /* Altındaki görsel veya sonuçla arasına mesafe koymak için */
-    margin-bottom: -10px;
-    
-    /* Retro temana uygun olması için merkezde tutalım */
-    text-align: left;
-}
-
-.table-img {
-    /* Görselin piksellerini yumuşatmadan, net (keskin) gösterir */
     image-rendering: pixelated; 
     image-rendering: crisp-edges;
 }
-.screen-overlay {
-  position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ffffff;
-    display: none; 
-    
-    /* TAM MERKEZLEME SİHİRİ */
-    flex-direction: column;
-    justify-content: center; /* Dikeyde ortalar */
-    align-items: center;     /* Yatayda ortalar */
-    z-index: 99999;
-}
 
-
-.end-gif {
-    width: 200px;
-    height: auto;
-    border: none;
-    margin-bottom: 20px;
-    margin-left: 595px;
-    image-rendering: pixelated; /* GIF'in retro görünmesi için */
-}
-
-.typing-text {
-  text-align: center;
+.step-description {
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 500;
+    margin-bottom: 15px;
+    text-align: left;
     width: 100%;
-    margin: 5px 0;
 }
-/* Mevcut #end-screen ve [style*="display: flex"] kısımlarını sil, yerine bunu yapıştır: */
 
-#end-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: #ffffff; /* Arka planı bembeyaz yapar */
-    display: none; 
+/* === YENİ LS TEKLİ KUTU TASARIMI (Taşma Sorunu Çözüldü) === */
+.ls-single-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.ls-pair {
+    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 99999;
-}
-
-/* Kapanış ekranındaki o siyah çerçeveli kutuyu tamamen yok eder */
-#end-screen .terminal-window {
-  display: block; /* Flexbox paketleme mantığını iptal eder */
+    gap: 30px;
     width: 100%;
-    border: none !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    position: relative; /* İçindekilerin bağımsız hareket etmesine izin verir */
 }
 
-
-
-/* JS tetiklediğinde görünmesi için gerekli olan kural */
-#end-screen[style*="display: flex"] {
-    display: flex !important;
+.ls-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
 }
-/* Kapanış ekranındaki butonu giriş sayfasındaki butonla eşitler */
-#end-screen .retro-button {
-   background: #fff;
-    border: 2px solid #000;
-    font-family: 'VT323', monospace;
-    font-size: 20px; 
-    padding: 6px 15px;
-    cursor: pointer;
-    box-shadow: 4px 4px 0px #000;
-    margin-top: 40px; /* GIF ile arasını açar */
-    display: block;
+
+.ls-label {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+}
+
+.ls-bits {
+    display: flex;
+    gap: 6px;
+}
+
+.ls-bits span {
+    width: 45px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #000;
+    font-size: 28px;
+    background: #fff;
+    box-shadow: 3px 3px 0 #ddd;
+}
+
+.ls-arrow {
+    font-size: 30px;
+    font-weight: bold;
     color: #000;
-    text-align: center;
-    margin-right: auto; 
-    margin-left: 45.5%;
-    position:relative;
-    left:0;
 }
 
-/* Tıklama efekti (Giriş sayfasındakiyle aynı) */
-#end-screen .retro-button:active {
-    transform: translate(2px, 2px);
-    box-shadow: 0px 0px 0px #000;
+.ls-transition {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0;
 }
+
+.down-arrow {
+    font-size: 24px;
+    margin: 5px 0;
+}
+
+.ls-before {
+    opacity: 0.5;
+    filter: grayscale(0.5);
+}
+
+.ls-before .ls-bits span {
+    background: #e0e0e0;
+    box-shadow: 2px 2px 0 #999;
+}
+
+/* Karşılaştırma konteyneri */
 .comparison-container {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
     margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .comp-box {
@@ -422,11 +407,13 @@ body {
 }
 
 .comp-value {
-    padding: 15px 25px;
+    padding: 12px 25px;
     border: 3px solid #000;
-    font-size: 24px;
+    font-size: 32px;
     background: #fff;
     box-shadow: 5px 5px 0px #000;
+    min-width: 180px;
+    text-align: center;
 }
 
 .comp-value.gray {
@@ -436,57 +423,201 @@ body {
 .comp-arrow {
     font-size: 35px;
     font-weight: bold;
-    margin-top: 25px;
 }
-.ls-comparison-wrapper {
-    display: flex;
+
+/* SON EKRAN */
+#end-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+    display: none; 
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    scale: 0.85; /* Taşmaları önlemek için önemli */
+    z-index: 99999;
 }
 
-.comparison-container {
+#end-screen .terminal-window {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 20px;
+    width: 100%;
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
 }
 
-.comp-value {
-    padding: 10px 20px;
-    border: 3px solid #000;
-    box-shadow: 4px 4px 0px #000;
-    font-size: 22px;
+.terminal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.gray-scale {
-    filter: grayscale(1);
-    opacity: 0.6;
+.end-gif {
+    width: 250px;
+    height: auto;
+    border: none;
+    margin-bottom: 30px;
+    image-rendering: pixelated;
 }
 
-.step-description {
-    white-space: pre-line;
-    text-align: left;
-    font-size: 20px;
-}
 .result-display {
     margin: 20px 0;
     padding: 15px;
-    border: none;/* Brutalist yeşil çerçeve */
+    border: none;
     background: none;
     text-align: center;
     font-family: 'VT323', monospace;
 }
 
 .result-display p {
-    margin: 5px 0;
+    margin: 10px 0;
     color: #000;
     font-weight: medium;
-    font-size: 20px;
+    font-size: 26px;
 }
 
 .result-display span {
-    color: #000; /* Bit değerleri beyaz olsun */
-    letter-spacing: 2px;
+    color: #000;
+    letter-spacing: 3px;
+    font-size: 32px;
+    border-bottom: 2px dashed #000;
+    padding: 0 10px;
+}
+
+#end-screen .retro-button {
+    background: #fff;
+    border: 3px solid #000;
+    font-family: 'VT323', monospace;
+    font-size: 24px; 
+    padding: 10px 25px;
+    cursor: pointer;
+    box-shadow: 6px 6px 0px #000;
+    margin-top: 40px;
+    color: #000;
+    text-transform: uppercase;
+    transition: 0.1s;
+}
+
+#end-screen .retro-button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px 0px #000;
+}
+
+#end-screen[style*="display: flex"] {
+    display: flex !important;
+}
+
+#shutdownBtn {
+    display: none !important;
+}
+
+.close-icon {
+    cursor: default;
+}
+
+/* Scroll bar stilleri (opsiyonel) */
+.detail-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.detail-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border: 1px solid #000;
+}
+
+.detail-content::-webkit-scrollbar-thumb {
+    background: #000;
+    border: 1px solid #fff;
+}
+/* XOR İşlemi Gösterimi */
+.xor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.xor-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.xor-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.xor-label {
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+}
+
+.xor-value {
+    padding: 12px 25px;
+    border: 3px solid #000;
+    font-size: 32px;
+    background: #fff;
+    box-shadow: 4px 4px 0px #ddd;
+    min-width: 160px;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    letter-spacing: 3px;
+}
+
+.xor-value.key-highlight {
+    background: #fffde7;
+    border-color: #ffc107;
+    box-shadow: 4px 4px 0px #ffc107;
+}
+
+.xor-symbol {
+    font-size: 40px;
+    font-weight: bold;
+    color: #000;
+}
+
+.xor-equals {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.xor-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.xor-result .xor-value {
+    background: #e8f5e9;
+    border-color: #4caf50;
+    box-shadow: 4px 4px 0px #4caf50;
+    min-width: 200px;
+}
+
+/* XOR Container responsive */
+@media (max-width: 600px) {
+    .xor-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .xor-symbol {
+        transform: rotate(90deg);
+    }
 }
